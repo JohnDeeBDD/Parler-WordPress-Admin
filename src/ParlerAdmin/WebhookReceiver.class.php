@@ -72,15 +72,15 @@ class WebhookReceiver {
         
         
         
-        ob_start();
-        var_dump($_REQUEST);
-        $result = ob_get_clean();
+       // ob_start();
+       // var_dump($_REQUEST);
+        //$result = ob_get_clean();
         
         // Gather post data.
         $my_post = array(
             'post_title'    => $siteUrl,
             'post_type'     => 'webhook',
-            'post_content'  => $result,
+            'post_content'  => $senderEmail,
             'post_status'   => 'publish',
             'post_author'   => 1
         );
