@@ -36,35 +36,22 @@ class WebhookReceiver {
                 )
             );
     }
-    
-    public function showIDs(){
-            $args = array(
-                'posts_per_page' => -1,
-                'post_type' => 'webhook',
-                'post_title' => "http://localhost:8888"
-            );
-            $the_query = new \WP_Query( $args );
-            if ($the_query->have_posts()) {
-                while ( $the_query->have_posts() ) :
-                $the_query->the_post();
-                wp_delete_post(get_the_ID());
-                endwhile;
-            }
-            wp_reset_postdata();
-        
-    }
-    
+       
     public function deleteOldHooks($title){
         $args = array(
             'posts_per_page' => -1,
             'post_type' => 'webhook',
-            'post_title' => $title
         );
         $the_query = new \WP_Query( $args );
         if ($the_query->have_posts()) {
             while ( $the_query->have_posts() ) :
             $the_query->the_post();
-            wp_delete_post(get_the_ID());
+            $oldTitle = get_the_title();
+            $ID = get_the_ID();
+            if($oldTitle == $title){
+                wp_delete_post($ID);
+            }
+
             endwhile;
         }
         wp_reset_postdata();
@@ -75,7 +62,7 @@ class WebhookReceiver {
         $siteUrl = "error. No site URL given.";
         if(isset($_POST['parler-site-url'])){
             $siteUrl = $_POST['parler-site-url'];
-            $this->deleteOldHooks($siteUrl);
+            //$this->deleteOldHooks($siteUrl);
         }
         
         $senderEmail = "error. No sender email given.";
