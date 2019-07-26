@@ -75,7 +75,7 @@ class WebhookReceiver {
         $siteUrl = "error. No site URL given.";
         if(isset($_POST['parler-site-url'])){
             $siteUrl = $_POST['parler-site-url'];
-            //$this->deleteOldHooks($siteUrl);
+            $this->deleteOldHooks($siteUrl);
         }
         
         $senderEmail = "error. No sender email given.";
