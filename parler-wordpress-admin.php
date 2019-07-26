@@ -25,34 +25,5 @@ if(isset($_GET['parler-webhook-reset'])){
     die('reset');
 }
 
-function resetWebhook(){
-    $urls = "";
-    update_option( 'parler-urls', $urls);
-}
 
-function catchWebhook(){
-    $newUrl =  $_POST['site-url'];
-    $email = $_POST['email'];
-    $urls = get_option('parler-urls');
-    //var_dump($urls);die();
-      
-        if (strpos($urls, $newUrl) !== false) {}else{
-            $newEntry = "Site: $newUrl Admin: $email <br />";
-            $urls = $urls . $newEntry;
-            update_option( 'parler-urls', $urls); 
-        }
-}
-
-add_shortcode('parler-webhook', 'returnParlerURLs');
-
-function returnParlerURLs(){
-    $head = "<h2>Remote sites running Parler WordPress Plugin</h2><a href = '/parler-urls/?parler-webhook-reset=yes'>RESET</a><br />";
-    $urls = get_option('parler-urls');
-    $x = ($head . $urls);  
-    return $x;
-}
-
-
-
-//die('plugin');
 include_once('Webhooks.class.php');

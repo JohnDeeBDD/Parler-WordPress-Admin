@@ -10,7 +10,7 @@ class ManualHookFeature{
     
     public function manualHookShortcode(){
         $output = <<<output
-<form method = "post" >
+<form method = "post"  >
 Site URL:<br />
 <input type = "text" name = "parler-site-url" id = "parler-site-url" /><br />
 <br />
