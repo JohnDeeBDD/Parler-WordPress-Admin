@@ -17,7 +17,7 @@ class RemoteSites{
             $the_query->the_post();
             $title = get_the_title();
             $content = get_the_content();
-            $output = $output . "<tr><td>$title</td><td>$content</td></tr>";
+            $output = $output . "<tr><td><a href = '$title/wp-json/parler/published-list' target = '_blank'>$title</a></td><td>$content</td></tr>";
             endwhile;
         }
         $output = $output . "</table>";
