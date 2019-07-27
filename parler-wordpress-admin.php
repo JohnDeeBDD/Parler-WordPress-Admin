@@ -28,4 +28,6 @@ if(isset($_GET['parler-webhook-reset'])){
 
 include_once('Webhooks.class.php');
 
-add_shortcode('remote-parler-sites', array(new RemoteSites, 'returnShortcode'));
+$RemoteSites = new RemoteSites;
+add_shortcode('remote-parler-sites', array($RemoteSites, 'returnShortcode'));
+add_action('rest_api_init', array($RemoteSites, 'registerAPI'));
